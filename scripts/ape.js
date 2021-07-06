@@ -27,6 +27,7 @@ async function getNFTs(ape, db) {
         const data = await contract.tokenOfOwnerByIndex(account, 0)
         console.log('NFT: ', data.toString())
         if (data != '') {
+          emitUIInteraction(data)
           let imageURI = db[data]
           let id = imageURI.split("//")[1]
           let realURI = "ipfs.io/ipfs" + id
