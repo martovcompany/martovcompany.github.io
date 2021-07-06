@@ -30,7 +30,7 @@ async function getNFTs(ape, db) {
           emitUIInteraction(data)
           let imageURI = db[data]
           let id = imageURI.split("//")[1]
-          let realURI = "ipfs.io/ipfs" + id
+          let realURI = "ipfs.io/ipfs/" + id
           console.log(realURI)
         }
       } catch (err) {
