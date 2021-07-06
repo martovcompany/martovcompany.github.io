@@ -1573,7 +1573,7 @@ function load() {
 
 
 
-
+/*
 // Crypto-related things
 import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
 
@@ -1631,3 +1631,4 @@ async function getRes() {
 }
 
 getRes()
+*/
