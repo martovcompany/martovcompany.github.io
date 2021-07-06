@@ -1572,10 +1572,10 @@ function load() {
 
 
 
-
+import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
 /*
 // Crypto-related things
-import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
+
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
 
