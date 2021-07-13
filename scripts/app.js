@@ -1502,7 +1502,7 @@ function connect() {
 		return;
 	}
 
-	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://'));
+	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://').replace('/game1', ':82').replace('/game2', ':83'));
 
 	ws.onmessage = function (event) {
 		console.log(`<- SS: ${event.data}`);
