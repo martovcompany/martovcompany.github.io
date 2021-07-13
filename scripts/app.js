@@ -1504,6 +1504,10 @@ function connect() {
 
 	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://').replace('/game1', ':82').replace('/game2', ':83'));
 
+	ws.onopen = function(e) {
+	 	setInterval(() => { ws.send("PING"); }, 1000)
+	};
+	
 	ws.onmessage = function (event) {
 		console.log(`<- SS: ${event.data}`);
 		var msg = JSON.parse(event.data);
