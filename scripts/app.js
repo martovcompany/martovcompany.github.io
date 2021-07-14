@@ -1504,6 +1504,7 @@ function connect() {
 
 	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://').replace('/game1', ':82').replace('/game2', ':83'));
 	if ('url' in ws) {
+		console.log("PING every 3 seconds")
 		setInterval(() => { ws.send("PING"); }, 3000)
 	}
 
