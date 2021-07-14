@@ -1503,7 +1503,7 @@ function connect() {
 	}
 
 	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://').replace('/game1', ':82').replace('/game2', ':83'));
-	setInterval(function() { ws.send("PING"); }, 3000)
+	setInterval((ws) => { if ("url" in ws) {ws.send("PING");console.log("PINGING")} }, 3000)
 
 	ws.onmessage = function (event) {
 		console.log(`<- SS: ${event.data}`);
