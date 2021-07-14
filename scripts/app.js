@@ -1502,8 +1502,10 @@ function connect() {
 		return;
 	}
 
-	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://').replace('/game1', ':82').replace('/game2', ':83'));
-	setInterval((ws) => { if ("url" in ws) {ws.send("PING");console.log("PINGING")} }, 3000)
+	ws = new WebSocket(window.location.href.replace('http://', 'ws://').replace('https://', 'wss://'));
+	setInterval(function() {
+		ws.send(JSON.stringify({ type: 'ping' }))
+	}, 5000)
 
 	ws.onmessage = function (event) {
 		console.log(`<- SS: ${event.data}`);
@@ -1516,6 +1518,8 @@ function connect() {
 			onWebRtcAnswer(msg);
 		} else if (msg.type === 'iceCandidate') {
 			onWebRtcIce(msg.candidate);
+		} else if (msg.type == 'pong') {
+			// got pong back, do nothing
 		} else {
 			console.log(`invalid SS message type: ${msg.type}`);
 		}
