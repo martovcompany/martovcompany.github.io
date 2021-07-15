@@ -54,10 +54,10 @@ async function getRes() {
     //return [ape, db]
 }
 
-window.onload = function(){ 
-    setTimeout( function() { 
-        getRes() 
-    }
-   , 5000); 
-};
+// window.onload = function(){ 
+//     setTimeout( function() { 
+//         getRes() 
+//     }
+//    , 5000); 
+// };
 
