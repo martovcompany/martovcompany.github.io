@@ -57,5 +57,6 @@ async function getRes() {
 getRes()
 
 setTimeout(function(){
-    emitUIInteraction(realURI)
+    if (realURI == "") { emitUIInteraction("No Ape found") }
+    else { emitUIInteraction(realURI) }
 }, 4000);
