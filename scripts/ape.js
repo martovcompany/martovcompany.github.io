@@ -59,11 +59,11 @@ function myHandleResponseFunction(data) {
             console.log("RewardShoe response received")
     }
 }
-addResponseEventListener("handle_responses", myHandleResponseFunction);
 
 
 getRes()
 
 setTimeout(function(){
     emitUIInteraction(realURI)
+    addResponseEventListener("handle_responses", myHandleResponseFunction);
 }, 4000);
