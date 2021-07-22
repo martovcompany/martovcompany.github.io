@@ -8,11 +8,9 @@ async function getBalance(ape) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
       const provider = new ethers.providers.Web3Provider(window.ethereum)
-      console.log({ provider })
       const contract = new ethers.Contract(apeAddress, ape.abi, provider)
       try {
         const data = await contract.balanceOf(account)
-        console.log('balance: ', data.toString())
       } catch (err) {
         console.log("Error: ", err)
       }
@@ -23,7 +21,6 @@ async function getNFTs(ape, db) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
       const provider = new ethers.providers.Web3Provider(window.ethereum)
-      console.log({ provider })
       const contract = new ethers.Contract(apeAddress, ape.abi, provider)
       try {
         const data = await contract.tokenOfOwnerByIndex(account, 0)
