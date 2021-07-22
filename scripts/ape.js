@@ -2,7 +2,7 @@ import { ethers } from "https://dai-martov.github.io/scripts/ethers-5.2.esm.min.
 // let ethers = require("https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js")
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-let realURI = ""
+let realURI = {"ipfs": ""}
 
 async function getBalance(ape) {
     if (typeof window.ethereum !== 'undefined') {
@@ -28,7 +28,7 @@ async function getNFTs(ape, db) {
         if (data != '') {
           let imageURI = db[data]
           let id = imageURI.split("//")[1]
-          realURI = "ipfs.io/ipfs/" + id
+          realURI.ipfs = "ipfs.io/ipfs/" + id
         }
       } catch (err) {
         console.log("Error: ", err)
@@ -54,6 +54,5 @@ async function getRes() {
 getRes()
 
 setTimeout(function(){
-    if (realURI == "") { emitUIInteraction("No Ape found") }
-    else { emitUIInteraction(realURI) }
+    emitUIInteraction(realURI)
 }, 4000);
