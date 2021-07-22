@@ -51,6 +51,17 @@ async function getRes() {
     //return [ape, db]
 }
 
+
+function myHandleResponseFunction(data) {
+    console.warn("UE4 Response received!");
+    switch (data) {
+        case "RewardShoe":
+            console.log("RewardShoe response received")
+    }
+}
+addResponseEventListener("handle_responses", myHandleResponseFunction);
+
+
 getRes()
 
 setTimeout(function(){
