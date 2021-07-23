@@ -41,7 +41,7 @@ async function getRes() {
     let json_data = await fetch('https://dai-martov.github.io/public/Ape.json')
     const [apeRes, dbRes] = await Promise.all([
         fetch('https://dai-martov.github.io/public/Ape.json'),
-        fetch('https://dai-martov.github.io/public/db3.json')
+        fetch('https://martovcompany.github.io/public/db3.json')
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
