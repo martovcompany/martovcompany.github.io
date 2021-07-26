@@ -4,7 +4,20 @@ var webRtcPlayerObj = null;
 var print_stats = false;
 var print_inputs = false;
 var connect_on_load = false;
-var isPlaying = false;
+var isPlaying = {
+  aInternal: false,
+  aListener: function(val) {},
+  set a(val) {
+    this.aInternal = val;
+    this.aListener(val);
+  },
+  get a() {
+    return this.aInternal;
+  },
+  registerListener: function(listener) {
+    this.aListener = listener;
+  }
+}
 
 var is_reconnection = false;
 var ws;
@@ -260,7 +273,7 @@ function showPlayOverlay() {
 
 		showFreezeFrameOverlay();
 		hideOverlay();
-		isPlaying = true;
+		isPlaying.a = true;
 	});
 	shouldShowPlayOverlay = false;
 }
