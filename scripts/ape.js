@@ -45,7 +45,7 @@ async function getRes() {
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
-    realURI.attrs = JSON.stringify(db["4486"]["attributes"])
+//     realURI.attrs = JSON.stringify(db["4486"]["attributes"])
     
     await getBalance(ape)
     await getNFTs(ape, db)
