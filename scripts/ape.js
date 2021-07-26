@@ -63,9 +63,14 @@ function myHandleResponseFunction(data) {
 }
 
 
+isPlaying.registerListener(function(val) {
+  console.log("Someone changed the value of isPlaying.a to " + val);
+});
+
+
+
 setTimeout(async function(){
     await getRes()
-    console.log(isPlaying)
     console.log(realURI)
     emitUIInteraction(realURI)
     addResponseEventListener("handle_responses", myHandleResponseFunction);
