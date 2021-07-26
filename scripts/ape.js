@@ -1,8 +1,8 @@
-import { ethers } from "https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js";
+import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
 // let ethers = require("https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js")
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-let realURI = {"ipfs": "No ape", "attrs" : []}
+let realURI = {"ipfs": "No ape", "attrs" : ""}
 
 async function getBalance(ape) {
     if (typeof window.ethereum !== 'undefined') {
@@ -40,7 +40,7 @@ async function getNFTs(ape, db) {
 async function getRes() {
     let json_data = await fetch('https://dai-martov.github.io/public/Ape.json')
     const [apeRes, dbRes] = await Promise.all([
-        fetch('https://dai-martov.github.io/public/Ape.json'),
+        fetch('https://martovcompany.github.io/public/Ape.json'),
         fetch('https://martovcompany.github.io/public/db4.json')
       ]);
     let ape = await apeRes.json()
