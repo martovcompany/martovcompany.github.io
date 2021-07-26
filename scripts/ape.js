@@ -38,7 +38,6 @@ async function getNFTs(ape, db) {
   }
 
 async function getRes() {
-    let json_data = await fetch('https://dai-martov.github.io/public/Ape.json')
     const [apeRes, dbRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/Ape.json'),
         fetch('https://martovcompany.github.io/public/db4.json')
