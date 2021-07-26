@@ -67,7 +67,6 @@ setTimeout(async function(){
     await getRes()
     while (!isPlaying) {
         console.log("Waiting")
-        var x = 1
     }
     console.log(realURI)
     emitUIInteraction(realURI)
