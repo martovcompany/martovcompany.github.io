@@ -45,7 +45,8 @@ async function getRes() {
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
-
+    realURI.attrs = db["4486"]["attributes"]
+    
     await getBalance(ape)
     await getNFTs(ape, db)
 
@@ -65,6 +66,7 @@ function myHandleResponseFunction(data) {
 getRes()
 
 setTimeout(function(){
+    console.log(realURI)
     emitUIInteraction(realURI)
     addResponseEventListener("handle_responses", myHandleResponseFunction);
 }, 4000);
