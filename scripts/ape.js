@@ -63,10 +63,13 @@ function myHandleResponseFunction(data) {
 }
 
 
-getRes()
-
-setTimeout(function(){
+setTimeout(async function(){
+    await getRes()
+    while (!isPlaying) {
+        console.log("Waiting")
+        var x = 1
+    }
     console.log(realURI)
     emitUIInteraction(realURI)
     addResponseEventListener("handle_responses", myHandleResponseFunction);
-}, 4000);
+}, 1000);
