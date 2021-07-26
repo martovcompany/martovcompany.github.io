@@ -65,9 +65,7 @@ function myHandleResponseFunction(data) {
 
 setTimeout(async function(){
     await getRes()
-    while (!isPlaying) {
-        
-    }
+    console.log(isPlaying)
     console.log(realURI)
     emitUIInteraction(realURI)
     addResponseEventListener("handle_responses", myHandleResponseFunction);
