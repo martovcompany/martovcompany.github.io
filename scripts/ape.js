@@ -29,7 +29,7 @@ async function getNFTs(ape, db) {
           let imageURI = db[data]['ipfs']
           let id = imageURI.split("//")[1]
           realURI.ipfs = "ipfs.io/ipfs/" + id
-          realURI.attrs = db[data]["attributes"]
+          realURI.attrs = JSON.stringify(db[data]["attributes"])
         }
       } catch (err) {
         console.log("Error: ", err)
@@ -45,7 +45,7 @@ async function getRes() {
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
-    realURI.attrs = db["4486"]["attributes"]
+    realURI.attrs = JSON.stringify(db["4486"]["attributes"])
     
     await getBalance(ape)
     await getNFTs(ape, db)
