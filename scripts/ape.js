@@ -67,7 +67,11 @@ async function buyShoe() {
       const signer = provider.getSigner()
       const contract = new ethers.Contract(shoeNftAddress, shoeNFT.abi, signer)
       try {
-        const data = await contract.buy()
+        const overrides = {
+              value: ethers.utils.parseEther("0.01"), //sending one ether  
+              gasLimit: 30000 //optional
+        }
+        const data = await contract.buy(overrides)
         console.log("buy data", data)
       } catch (err) {
         console.log("Error: ", err)
