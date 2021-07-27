@@ -2,7 +2,7 @@ import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.m
 // let ethers = require("https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js")
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-const shoeNftAddress = "0xb7e514f4018c9a6D17584148Ebb4aE8E33Ea4488" // on ropsten
+const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on ropsten
 let realURI = {"ipfs": "No ape", "attrs" : ""}
 
 async function getBalance(ape) {
