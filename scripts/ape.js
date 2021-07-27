@@ -55,7 +55,7 @@ async function getRes() {
 }
 
 
-async function buyShoe(shoeNFT) {
+async function buyShoe() {
     let [shoeRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/ShoeNFT.json')
     ]);
@@ -81,6 +81,7 @@ function myHandleResponseFunction(data) {
     switch (data) {
         case "RewardShoe":
             console.log("RewardShoe response received")
+            buyShoe()
     }
 }
 
