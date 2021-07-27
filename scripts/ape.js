@@ -69,7 +69,6 @@ async function buyShoe() {
       try {
         const overrides = {
               value: ethers.utils.parseEther("0.01"), //sending one ether  
-              gasLimit: 30000 //optional
         }
         const data = await contract.buy(overrides)
         console.log("buy data", data)
