@@ -87,6 +87,7 @@ function myHandleResponseFunction(data) {
             console.log("RewardShoe response received")
             buyShoe()
         case "Replay":
+            console.log("Replay response received")
             emitUIInteraction(realURI)
     }
 }
