@@ -2,6 +2,7 @@ import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.m
 // let ethers = require("https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js")
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+const shoeNftAddress = "0xb7e514f4018c9a6D17584148Ebb4aE8E33Ea4488" // on ropsten
 let realURI = {"ipfs": "No ape", "attrs" : ""}
 
 async function getBalance(ape) {
@@ -20,6 +21,7 @@ async function getBalance(ape) {
 async function getNFTs(ape, db) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      console.log("W3 Account", account)
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const contract = new ethers.Contract(apeAddress, ape.abi, provider)
       try {
@@ -50,6 +52,22 @@ async function getRes() {
     await getNFTs(ape, db)
 
     //return [ape, db]
+}
+
+
+async function buyShoe() {
+   if (typeof window.ethereum !== 'undefined') {
+      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const signer = provider.getSigner()
+      const contract = new ethers.Contract(shoeNftAddress, shoeNFT.abi, signer)
+      try {
+        const data = await contract.buy()
+        console.log("buy data", data)
+      } catch (err) {
+        console.log("Error: ", err)
+      }
+    }
 }
 
 
