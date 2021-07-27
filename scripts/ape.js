@@ -40,14 +40,12 @@ async function getNFTs(ape, db) {
   }
 
 async function getRes() {
-    const [apeRes, dbRes, shoeRes] = await Promise.all([
+    const [apeRes, dbRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/Ape.json'),
-        fetch('https://martovcompany.github.io/public/db4.json'),
-        fetch('https://martovcompany.github.io/public/ShoeNFT.json')
+        fetch('https://martovcompany.github.io/public/db4.json')
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
-    let shoe = await shoeRes.json()
 //     realURI.attrs = JSON.stringify(db["4486"]["attributes"])
     
     await getBalance(ape)
