@@ -40,12 +40,14 @@ async function getNFTs(ape, db) {
   }
 
 async function getRes() {
-    const [apeRes, dbRes] = await Promise.all([
+    const [apeRes, dbRes, shoeRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/Ape.json'),
-        fetch('https://martovcompany.github.io/public/db4.json')
+        fetch('https://martovcompany.github.io/public/db4.json'),
+        fetch('https://martovcompany.github.io/public/ShoeNFT.json')
       ]);
     let ape = await apeRes.json()
     let db = await dbRes.json()
+    let shoe = await shoeRes.json()
 //     realURI.attrs = JSON.stringify(db["4486"]["attributes"])
     
     await getBalance(ape)
@@ -55,7 +57,12 @@ async function getRes() {
 }
 
 
-async function buyShoe() {
+async function buyShoe(shoeNFT) {
+    let [shoeRes] = await Promise.all([
+        fetch('https://martovcompany.github.io/public/ShoeNFT.json')
+    ]);
+    let shoeNFT = await shoeRes.json()
+    
    if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
       const provider = new ethers.providers.Web3Provider(window.ethereum)
