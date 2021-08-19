@@ -47,22 +47,15 @@ async function getNFTs(ape, db) {
 async function getFrog(frog) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
-      console.log("W3 Account", account)
       const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const contract = new ethers.Contract(shoeNftAddress, frog.abi, provider)
-//       try {
-//         const data = await contract.tokenOfOwnerByIndex(account, 0)
-//         console.log('NFT: ', data.toString())
-//         if (data != '') {
-//           let imageURI = db[data]['ipfs']
-//           let id = imageURI.split("//")[1]
-//           realURI.ipfs = "ipfs.io/ipfs/" + id
-//           realURI.attrs = JSON.stringify(db[data]["attributes"])
-//           realURI.account = account
-//         }
-//       } catch (err) {
-//         console.log("Error: ", err)
-//       }
+      const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
+      // check if has frog
+      const data = await contract.balanceOf(account)
+      if (data > 0) {
+        realURI.ipfs = "https://ipfs.io/ipfs/Qmbv4ENG9xCiTZesAYh8cNyXukfFaRzXXii83NTzLd7Jcp"
+        realURI.account = account
+        console.log("realURI", realURI)
+      }
     }
 }
 
