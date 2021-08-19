@@ -1,8 +1,12 @@
 import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
-// let ethers = require("https://dai-martov.github.io/scripts/ethers-5.2.esm.min.js")
+
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-const shoeNftAddress = "0x8A73787F47E9c0D18168252F8B3775ab3F64Fc18" // on main
+// const shoeNftAddress = "0x8A73787F47E9c0D18168252F8B3775ab3F64Fc18" // on main
+const frogNftAddress = "0x709b7Ac1A88286D2dDbBcD67C14072b1DD49Cbb0" // on Polygon mumbai test
+const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
+
+
 let realURI = {"ipfs": "No ape", "attrs" : "", "account" : ""}
 
 async function getBalance(ape) {
@@ -38,19 +42,44 @@ async function getNFTs(ape, db) {
         console.log("Error: ", err)
       }
     }
-  }
+}
+
+async function getFrog(frog) {
+    if (typeof window.ethereum !== 'undefined') {
+      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      console.log("W3 Account", account)
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const contract = new ethers.Contract(shoeNftAddress, frog.abi, provider)
+//       try {
+//         const data = await contract.tokenOfOwnerByIndex(account, 0)
+//         console.log('NFT: ', data.toString())
+//         if (data != '') {
+//           let imageURI = db[data]['ipfs']
+//           let id = imageURI.split("//")[1]
+//           realURI.ipfs = "ipfs.io/ipfs/" + id
+//           realURI.attrs = JSON.stringify(db[data]["attributes"])
+//           realURI.account = account
+//         }
+//       } catch (err) {
+//         console.log("Error: ", err)
+//       }
+    }
+}
 
 async function getRes() {
-    const [apeRes, dbRes] = await Promise.all([
+    const [apeRes, frogRes, dbRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/Ape.json'),
+        fetch('https://martovcompany.github.io/public/Frog.json'),
         fetch('https://martovcompany.github.io/public/db4.json')
       ]);
     let ape = await apeRes.json()
+    let frog = await frogRes.json()
     let db = await dbRes.json()
 //     realURI.attrs = JSON.stringify(db["4486"]["attributes"])
     
-    await getBalance(ape)
-    await getNFTs(ape, db)
+    // await getBalance(ape)
+    await getFrog(frog)
+    // await getNFTs(ape, db)
 
     //return [ape, db]
 }
