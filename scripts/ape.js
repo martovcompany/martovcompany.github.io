@@ -69,7 +69,7 @@ async function getFrog(frog) {
 async function getRes() {
     const [apeRes, frogRes, dbRes] = await Promise.all([
         fetch('https://martovcompany.github.io/public/Ape.json'),
-        fetch('https://martovcompany.github.io/public/Frog.json'),
+        fetch('https://martovcompany.github.io/public/FrogNFT.json'),
         fetch('https://martovcompany.github.io/public/db4.json')
       ]);
     let ape = await apeRes.json()
