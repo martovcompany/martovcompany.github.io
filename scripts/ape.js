@@ -62,7 +62,7 @@ async function getFrog(frog) {
               const metaURI = await contract.tokenURI(tokenId)
               // load metadata
               console.log("meta URI", metaURI)
-              const [meta] = await Promise.all([metaURI])
+              const [meta] = await Promise.all([fetch(metaURI)])
               const metajson = await meta.json()
               // get attributes
               console.log(metajson.attributes)
