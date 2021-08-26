@@ -53,19 +53,20 @@ async function getFrog(frog) {
             // check if has frog
             const data = await contract.balanceOf(account)
             if (data > 0) {
-              realURI.ipfs = "https://ipfs.io/ipfs/Qmbv4ENG9xCiTZesAYh8cNyXukfFaRzXXii83NTzLd7Jcp"
-              realURI.account = account
-              console.log("realURI", realURI)
-              // get token id
-              const tokenId = await contract.tokenOfOwnerByIndex(account, 0)
-              // get token metadata
-              const metaURI = await contract.tokenURI(tokenId)
-              // load metadata
-              console.log("meta URI", metaURI)
-              const [meta] = await Promise.all([fetch(metaURI)])
-              const metajson = await meta.json()
-              // get attributes
-              console.log(metajson.attributes)
+                realURI.ipfs = "https://ipfs.io/ipfs/Qmbv4ENG9xCiTZesAYh8cNyXukfFaRzXXii83NTzLd7Jcp"
+                console.log("realURI", realURI)
+                // get token id
+                const tokenId = await contract.tokenOfOwnerByIndex(account, 0)
+                // get token metadata
+                const metaURI = await contract.tokenURI(tokenId)
+                // load metadata
+                console.log("meta URI", metaURI)
+                const [meta] = await Promise.all([fetch(metaURI)])
+                const metajson = await meta.json()
+                // get attributes
+                realURI.ipfs = metajson.image
+                realURI.attrs = JSON.stringify(metajson.attributes)
+                realURI.account = account
             }
         }
     } catch (e) {
