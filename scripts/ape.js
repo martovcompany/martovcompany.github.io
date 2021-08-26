@@ -1,15 +1,15 @@
 import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
 
 
-const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" // on main
 // const shoeNftAddress = "0x8A73787F47E9c0D18168252F8B3775ab3F64Fc18" // on main
-const frogNftAddress = "0x709b7Ac1A88286D2dDbBcD67C14072b1DD49Cbb0" // on Polygon mumbai test
+const frogNftAddress = "0x4e41D936236848eF026924b4107E5B43A2B43435" // on Polygon mumbai test
 const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
 
 
 let realURI = {"ipfs": "No ape", "attrs" : "", "account" : ""}
 
-async function getBalance(ape) {
+async function getApeBalance(ape) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
       const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -22,7 +22,7 @@ async function getBalance(ape) {
     }
 }
 
-async function getNFTs(ape, db) {
+async function getApe(ape, db) {
     if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
       console.log("W3 Account", account)
@@ -45,17 +45,28 @@ async function getNFTs(ape, db) {
 }
 
 async function getFrog(frog) {
-    if (typeof window.ethereum !== 'undefined') {
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
-      // check if has frog
-      const data = await contract.balanceOf(account)
-      if (data > 0) {
-        realURI.ipfs = "https://ipfs.io/ipfs/Qmbv4ENG9xCiTZesAYh8cNyXukfFaRzXXii83NTzLd7Jcp"
-        realURI.account = account
-        console.log("realURI", realURI)
-      }
+    try {
+        if (typeof window.ethereum !== 'undefined') {
+            const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+            const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
+            // check if has frog
+            const data = await contract.balanceOf(account)
+            if (data > 0) {
+              realURI.ipfs = "https://ipfs.io/ipfs/Qmbv4ENG9xCiTZesAYh8cNyXukfFaRzXXii83NTzLd7Jcp"
+              realURI.account = account
+              console.log("realURI", realURI)
+              // get token id
+              const tokenId = await contract.tokenOfOwnerByIndex(account, 0)
+              // get token metadata
+              const metaURI = await contract.tokenURI(tokenId)
+              // load metadata
+              console.log("meta URI", metaURI)
+              // get attributes
+            }
+        }
+    } catch (e) {
+        console.log("Get frog error", e)
     }
 }
 
@@ -122,11 +133,3 @@ isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);
 });
 
-
-
-// setTimeout(async function(){
-//     await getRes()
-//     console.log(realURI)
-//     emitUIInteraction(realURI)
-//     addResponseEventListener("handle_responses", myHandleResponseFunction);
-// }, 1000);
