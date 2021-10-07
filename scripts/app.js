@@ -245,7 +245,7 @@ function setOverlay(htmlClass, htmlElement, onClickFunction) {
 function showConnectOverlay() {
 	var startText = document.createElement('div');
 	startText.id = 'playButton';
-	startText.innerHTML = 'Click to start';
+	startText.innerHTML = 'ENTER ANURA';
 
 	setOverlay('clickableState', startText, event => {
 		connect();
