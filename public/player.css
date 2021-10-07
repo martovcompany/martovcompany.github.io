@@ -55,6 +55,9 @@ video{
 	position: relative;
 	background-image: url("https://martovcompany.github.io/public/background.png");
 	background-color: #000;
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 #overlay{
