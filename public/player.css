@@ -53,6 +53,7 @@ video{
 	width: 1280px;
 	height: 720px;
 	position: relative;
+	background-image: url("https://martovcompany.github.io/public/background.png");
 	background-color: #000;
 }
 
