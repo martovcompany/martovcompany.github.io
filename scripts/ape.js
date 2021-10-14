@@ -53,7 +53,8 @@ async function getFrog(frog) {
             const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
             // check if has frog
             const data = await contract.balanceOf(account)
-            for (var i = 0; i < balance.toNumber(); i++) 
+            console.log("Balance", data.toString())
+            // for (var i = 0; i < balance.toNumber(); i++) 
             if (data.toNumber() > 0) {
                 // get token id
                 const tokenId = await contract.tokenOfOwnerByIndex(account, 0);
