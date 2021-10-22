@@ -51,6 +51,10 @@ async function getFrog(frog) {
             const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
             const provider = new ethers.providers.Web3Provider(window.ethereum)
             const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
+            // register listener
+            contract.on("AnuranGenerated", (anuran) => {
+                console.log("AnuranGenerated", anuran);
+            });
             // check if has frog
             const data = await contract.balanceOf(account)
             console.log("Balance", data.toString())
