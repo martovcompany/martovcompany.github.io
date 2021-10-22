@@ -53,7 +53,7 @@ async function getFrog(frog) {
             const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
             // register listener
             contract.on("AnuranGenerated", (anuran) => {
-                console.log("AnuranGenerated", anuran);
+                console.log("AnuranGenerated", anuran.eyewear, anuran.headwear);
             });
             // check if has frog
             const data = await contract.balanceOf(account)
