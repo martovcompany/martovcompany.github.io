@@ -61,8 +61,13 @@ async function getFrog(frog) {
             // for (var i = 0; i < balance.toNumber(); i++) 
             if (data.toNumber() > 0) {
                 // get token id
-                const tokenId = await contract.tokenOfOwnerByIndex(account, 0);
-                const res = await contract.getCharacterOverView(tokenId);
+                for (var i = 0; i < data.toNumber(); i++) {
+                    const tokenId = await contract.tokenOfOwnerByIndex(account, i);
+                    const res = await contract.getCharacterOverView(tokenId);
+                    emitUIInteraction({"Eyes" : res.eyewear, "Head" : res.headwear})
+                }
+//                 const tokenId = await contract.tokenOfOwnerByIndex(account, 0);
+//                 const res = await contract.getCharacterOverView(tokenId);
                 // load metadata
                 // const [meta] = await Promise.all([fetch(metaURI)])
                 // const metajson = await meta.json()
