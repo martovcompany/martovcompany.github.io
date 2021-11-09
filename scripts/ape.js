@@ -50,31 +50,31 @@ async function getFrog(frog) {
         if (typeof window.ethereum !== 'undefined') {
             const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
             const provider = new ethers.providers.Web3Provider(window.ethereum)
-            const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
+//             const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
             // register listener
-            contract.on("AnuranGenerated", (anuran) => {
-                console.log("AnuranGenerated", anuran.eyewear, anuran.headwear);
-            });
+//             contract.on("AnuranGenerated", (anuran) => {
+//                 console.log("AnuranGenerated", anuran.eyewear, anuran.headwear);
+//             });
             // check if has frog
-            const data = await contract.balanceOf(account)
-            console.log("Balance", data.toString())
+//             const data = await contract.balanceOf(account)
+//             console.log("Balance", data.toString())
             // for (var i = 0; i < balance.toNumber(); i++) 
-            if (data.toNumber() > 0) {
+//             if (data.toNumber() > 0) {
                 // get token id
-                for (var i = 0; i < data.toNumber(); i++) {
-                    const tokenId = await contract.tokenOfOwnerByIndex(account, i);
-                    const res = await contract.getCharacterOverView(tokenId);
-                    emitUIInteraction({"Eyes" : res.eyewear, "Head" : res.headwear})
-                }
+//                 for (var i = 0; i < data.toNumber(); i++) {
+//                     const tokenId = await contract.tokenOfOwnerByIndex(account, i);
+//                     const res = await contract.getCharacterOverView(tokenId);
+//                     emitUIInteraction({"Eyes" : res.eyewear, "Head" : res.headwear})
+//                 }
 //                 const tokenId = await contract.tokenOfOwnerByIndex(account, 0);
 //                 const res = await contract.getCharacterOverView(tokenId);
                 // load metadata
                 // const [meta] = await Promise.all([fetch(metaURI)])
                 // const metajson = await meta.json()
-                realURI.ipfs = "no image"
-                realURI.attrs = JSON.stringify({"Eyes" : res.eyewear, "Head" : res.headwear})
-                realURI.account = account
-            }
+            realURI.ipfs = "no image"
+//                 realURI.attrs = JSON.stringify({"Eyes" : res.eyewear, "Head" : res.headwear})
+            realURI.account = account
+//             }
         }
     } catch (e) {
         console.log("Get frog error", e)
