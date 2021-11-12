@@ -3,11 +3,12 @@ import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.m
 
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" // on main
 // const shoeNftAddress = "0x8A73787F47E9c0D18168252F8B3775ab3F64Fc18" // on main
-const frogNftAddress = "0xFA8DA81cC7dD4bF9Dc8a2f7743Ab0bE9be1c34fa" // on mumbai testnet
+// const frogNftAddress = "0xFA8DA81cC7dD4bF9Dc8a2f7743Ab0bE9be1c34fa" // on mumbai testnet
+const frogNftAddress = "0x8f5d5DBE2df94A92626D729EEFD8351B14c29efA" // on Rinkeby testnet
 const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
 
 
-let realURI = {"ipfs": "No ape", "attrs" : "", "account" : ""}
+let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : ""}
 
 
 async function getApeBalance(ape) {
@@ -50,20 +51,27 @@ async function getFrog(frog) {
         if (typeof window.ethereum !== 'undefined') {
             const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
             const provider = new ethers.providers.Web3Provider(window.ethereum)
-//             const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
+            const contract = new ethers.Contract(frogNftAddress, frog.abi, provider)
             // register listener
 //             contract.on("AnuranGenerated", (anuran) => {
 //                 console.log("AnuranGenerated", anuran.eyewear, anuran.headwear);
 //             });
             // check if has frog
-//             const data = await contract.balanceOf(account)
-//             console.log("Balance", data.toString())
-            // for (var i = 0; i < balance.toNumber(); i++) 
+            const balance = await contract.balanceOf(account)
+            console.log("Balance", balance.toString())
+//             for (var i = 0; i < balance.toNumber(); i++) {
 //             if (data.toNumber() > 0) {
                 // get token id
 //                 for (var i = 0; i < data.toNumber(); i++) {
-//                     const tokenId = await contract.tokenOfOwnerByIndex(account, i);
-//                     const res = await contract.getCharacterOverView(tokenId);
+            if (balance.toNumber() > 0) {
+                const tokenId = await contract.tokenOfOwnerByIndex(
+                  account,
+                  balance.toNumber() - 1
+                )
+                const res = await contract.getCharacterOverView(tokenId)
+                realURI.Eyes = res.eyewear
+                realURI.Head = res.headwear
+            }
 //                     emitUIInteraction({"Eyes" : res.eyewear, "Head" : res.headwear})
 //                 }
 //                 const tokenId = await contract.tokenOfOwnerByIndex(account, 0);
