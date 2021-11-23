@@ -134,12 +134,15 @@ function myHandleResponseFunction(data) {
     switch (data) {
         case "OnLoginPageLoaded":
             console.log("Login page LOADED from UE4")
+            break;
         case "RewardShoe":
             console.log("RewardShoe response received")
-            buyShoe()
+            buyShoe();
+            break;
         case "Replay":
             console.log("Replay response received")
             location.reload();
+            break;
     }
 }
 
