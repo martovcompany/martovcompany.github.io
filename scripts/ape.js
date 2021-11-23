@@ -130,18 +130,18 @@ async function buyShoe() {
 
 
 function myHandleResponseFunction(data) {
-    console.warn("UE4 Response received!");
+    console.warn("UE4 Response received!", data);
     switch (data) {
         case "OnLoginPageLoaded":
             console.log("Login page LOADED from UE4")
             break;
         case "RewardShoe":
             console.log("RewardShoe response received")
-            buyShoe();
+//             buyShoe();
             break;
         case "Replay":
             console.log("Replay response received")
-            location.reload();
+//             location.reload();
             break;
     }
 }
