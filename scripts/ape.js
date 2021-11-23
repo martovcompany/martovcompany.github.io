@@ -129,11 +129,14 @@ async function buyShoe() {
 }
 
 
-function myHandleResponseFunction(data) {
+async function myHandleResponseFunction(data) {
     console.warn("UE4 Response received!", data);
     switch (data) {
         case "OnLoginPageLoaded":
-            console.log("Login page LOADED from UE4")
+            console.log("Meta Forged player LOADED from UE4")
+            await getRes()
+            console.log(realURI)
+            emitUIInteraction(realURI)
             break;
         case "RewardShoe":
             console.log("RewardShoe response received")
@@ -149,7 +152,4 @@ function myHandleResponseFunction(data) {
 
 isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);
-    await getRes()
-    console.log(realURI)
-    emitUIInteraction(realURI)
 });
