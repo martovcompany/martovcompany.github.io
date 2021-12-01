@@ -129,15 +129,30 @@ async function buyShoe() {
 }
 
 
+async function getAccount() {
+  if (typeof window.ethereum !== 'undefined') {
+      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      return account    
+  } else {
+      return ""
+  }
+}
+
+
 async function myHandleResponseFunction(data) {
     console.warn("UE4 Response received!", data);
     switch (data) {
-        case "OnLoginPageLoaded":
+        case "OnMetaForgedLoaded":
             console.log("Meta Forged player LOADED from UE4")
             await getRes()
             console.log(realURI)
             emitUIInteraction(realURI)
             break;
+        case "OnGameStateLoaded":
+            console.log("Game state LOADED from UE4")
+            const acc = await getAccount()
+            console.log("account", acc)
+            emitUIInteraction({"account" : acc})
         case "RewardShoe":
             console.log("RewardShoe response received")
 //             buyShoe();
