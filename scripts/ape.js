@@ -148,7 +148,7 @@ async function getTov() {
         const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const contract = new ethers.Contract(tovAddress, tov.abi, provider)
-        const balance = await contract.methods.balanceOf(account).call();
+        const balance = await contract.balanceOf(account);
         return balance.toNumber()
     } else {
         return 0
