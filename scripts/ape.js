@@ -6,9 +6,9 @@ const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" // on main
 // const frogNftAddress = "0xFA8DA81cC7dD4bF9Dc8a2f7743Ab0bE9be1c34fa" // on mumbai testnet
 const frogNftAddress = "0x8f5d5DBE2df94A92626D729EEFD8351B14c29efA" // on Rinkeby testnet
 const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
+const tovAddress = "0x89487436E74f06e118414fa5465E3b24e1b1e84F" // on Rinkeby testnet
 
-
-let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : ""}
+let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
 
 
 async function getApeBalance(ape) {
@@ -139,12 +139,32 @@ async function getAccount() {
 }
 
 
+async function getTov() {
+    const [tovRes] = await Promise.all([
+        fetch('https://martovcompany.github.io/public/Tov.json')
+      ]);
+    let tov = await tovRes.json()
+    if (typeof window.ethereum !== 'undefined') {
+        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const contract = new ethers.Contract(tovAddress, tov.abi, provider)
+        const balance = await contract.methods.balanceOf(account).call();
+        return balance.toNumber()
+    } else {
+        return 0
+    }
+}
+
+
+
 async function myHandleResponseFunction(data) {
     console.warn("UE4 Response received!", data);
     switch (data) {
         case "OnMetaForgedLoaded":
             console.log("Meta Forged player LOADED from UE4")
             await getRes()
+            const tov = await getTov()
+            realURI.Tov = tov
             console.log(realURI)
             emitUIInteraction(realURI)
             break;
