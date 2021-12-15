@@ -171,8 +171,9 @@ async function myHandleResponseFunction(data) {
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
             const acc = await getAccount()
-            console.log("account", acc)
-            emitUIInteraction({"account" : acc})
+            const tov = await getTov()
+            console.log("account", acc, "tov", tov)
+            emitUIInteraction({"account" : acc, "Tov" : tov})
         case "RewardShoe":
             console.log("RewardShoe response received")
 //             buyShoe();
