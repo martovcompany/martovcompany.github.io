@@ -163,8 +163,6 @@ async function myHandleResponseFunction(data) {
         case "OnMetaForgedLoaded":
             console.log("Meta Forged player LOADED from UE4")
             await getRes()
-            const tov = await getTov()
-            realURI.Tov = tov
             console.log(realURI)
             emitUIInteraction(realURI)
             break;
