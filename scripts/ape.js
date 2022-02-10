@@ -159,6 +159,11 @@ async function getTov() {
 
 async function myHandleResponseFunction(data) {
     console.warn("UE4 Response received!", data);
+
+    console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
+    const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
+    console.log("All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
+
     switch (data) {
         case "OnMetaForgedLoaded":
             console.log("Meta Forged player LOADED from UE4")
@@ -171,10 +176,15 @@ async function myHandleResponseFunction(data) {
             const acc = await getAccount()
             const tov = await getTov()
 
+            console.log("PreLoad All eth user data:", ethUserDataLocalStorage);
             const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-            console.log("All eth user data is converted to JS Object:", ethUserDataLocalStorage);
+            console.log("All eth user data:", ethUserDataLocalStorage);
+            
+            console.log("PreLoad Headwear from localStorage:", headwear);    
             const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
-            console.log("Headwear from localStorage:", headwear);        
+            console.log("Headwear from localStorage:", headwear);      
+            
+            console.log("PreLoad Eyewear from localStorage:", eyewear);            
             const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
             console.log("Eyewear from localStorage:", eyewear);
 
