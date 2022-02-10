@@ -1,6 +1,5 @@
 import { ethers } from "https://martovcompany.github.io/scripts/ethers-5.2.esm.min.js";
 
-
 const apeAddress = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" // on main
 // const shoeNftAddress = "0x8A73787F47E9c0D18168252F8B3775ab3F64Fc18" // on main
 // const frogNftAddress = "0xFA8DA81cC7dD4bF9Dc8a2f7743Ab0bE9be1c34fa" // on mumbai testnet
@@ -200,6 +199,15 @@ async function myHandleResponseFunction(data) {
             break;
     }
 }
+
+
+function printName() {
+  console.log('my name is Kate')
+}
+printName()
+
+const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
+console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
 
 
 isPlaying.registerListener(async function(val) {
