@@ -170,8 +170,16 @@ async function myHandleResponseFunction(data) {
             console.log("Game state LOADED from UE4")
             const acc = await getAccount()
             const tov = await getTov()
-            console.log("account", acc, "tov", tov)
-            emitUIInteraction({"account" : acc, "Tov" : tov})
+
+            const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
+            console.log("All eth user data is converted to JS Object:", ethUserDataLocalStorage);
+            const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
+            console.log("Headwear from localStorage:", headwear);        
+            const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
+            console.log("Eyewear from localStorage:", eyewear);
+
+            console.log("account", acc, "tov", tov, "headwear", headwear, "eyewear", eyewear)
+            emitUIInteraction({"account" : acc, "Tov" : tov, "Head": headwear, "Eyes": eyewear})
         case "RewardShoe":
             console.log("RewardShoe response received")
 //             buyShoe();
