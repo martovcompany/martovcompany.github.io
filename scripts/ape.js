@@ -202,13 +202,13 @@ async function myHandleResponseFunction(data) {
 }
 
 
-function printName() {
-  console.log('my name is Kate')
+function apeFileRun() {
+  console.log('ape.js is running!')
 }
-printName()
+apeFileRun()
 
-const name = localStorage.getItem('name')
-console.log('name localStorage', name)
+window.localStorage.getItem('name')
+console.log('name from martoverse localStorage', window.localStorage.getItem('name'))
 
    // Retrieve all eth user data (as a string) from localStorage
   //  const currentEthData = window.localStorage.getItem('ethData')   
