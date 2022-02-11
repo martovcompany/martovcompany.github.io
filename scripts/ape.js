@@ -207,8 +207,14 @@ function printName() {
 }
 printName()
 
-const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
+   // Retrieve all eth user data (as a string) from localStorage
+   console.log(
+    'All eth user data stored in localStorage as a json string:',
+    window.localStorage.getItem('ethData')
+  );
+
+// const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
+// console.log("PreLoad All eth user:", ethUserDataLocalStorage);
 
  // Get the value of a specific attribute
  const ethUserAddress = ethUserDataLocalStorage.ethAddress
