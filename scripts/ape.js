@@ -209,6 +209,14 @@ printName()
 const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
 console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
 
+console.log("PreLoad Headwear from localStorage:", headwear);    
+const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
+console.log("Headwear from localStorage:", headwear);      
+
+console.log("PreLoad Eyewear from localStorage:", eyewear);            
+const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
+console.log("Eyewear from localStorage:", eyewear);
+
 
 isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);
