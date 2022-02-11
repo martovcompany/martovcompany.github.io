@@ -7,7 +7,7 @@ const frogNftAddress = "0x8f5d5DBE2df94A92626D729EEFD8351B14c29efA" // on Rinkeb
 const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
 const tovAddress = "0x89487436E74f06e118414fa5465E3b24e1b1e84F" // on Rinkeby testnet
 
-let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
+// let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
 
 
 async function getApeBalance(ape) {
@@ -157,46 +157,47 @@ async function getTov() {
 
 
 async function myHandleResponseFunction(data) {
+
+    console.log('myHandleResponseFunction run')
     console.warn("UE4 Response received!", data);
 
-    console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
     const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
     console.log("All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
 
     switch (data) {
-        case "OnMetaForgedLoaded":
-            console.log("Meta Forged player LOADED from UE4")
-            await getRes()
-            console.log(realURI)
-            emitUIInteraction(realURI)
-            break;
+        // case "OnMetaForgedLoaded":
+        //     console.log("Meta Forged player LOADED from UE4")
+        //     await getRes()
+        //     console.log(realURI)
+        //     emitUIInteraction(realURI)
+        //     break;
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
             const acc = await getAccount()
             const tov = await getTov()
 
-            console.log("PreLoad All eth user data:", ethUserDataLocalStorage);
-            const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-            console.log("All eth user data:", ethUserDataLocalStorage);
+            // console.log("PreLoad All eth user data:", ethUserDataLocalStorage);
+            // const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
+            // console.log("All eth user data:", ethUserDataLocalStorage);
             
-            console.log("PreLoad Headwear from localStorage:", headwear);    
-            const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
-            console.log("Headwear from localStorage:", headwear);      
+            // console.log("PreLoad Headwear from localStorage:", headwear);    
+            // const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
+            // console.log("Headwear from localStorage:", headwear);      
             
-            console.log("PreLoad Eyewear from localStorage:", eyewear);            
-            const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
-            console.log("Eyewear from localStorage:", eyewear);
+            // console.log("PreLoad Eyewear from localStorage:", eyewear);            
+            // const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
+            // console.log("Eyewear from localStorage:", eyewear);
 
             console.log("account", acc, "tov", tov, "headwear", headwear, "eyewear", eyewear)
-            emitUIInteraction({"account" : acc, "Tov" : tov, "Head": headwear, "Eyes": eyewear})
-        case "RewardShoe":
-            console.log("RewardShoe response received")
-//             buyShoe();
-            break;
-        case "Replay":
-            console.log("Replay response received")
-//             location.reload();
-            break;
+            emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": headwear, "Eyewear": eyewear})
+//         case "RewardShoe":
+//             console.log("RewardShoe response received")
+// //             buyShoe();
+//             break;
+//         case "Replay":
+//             console.log("Replay response received")
+// //             location.reload();
+//             break;
     }
 }
 
@@ -209,13 +210,15 @@ printName()
 const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
 console.log("PreLoad All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
 
-console.log("PreLoad Headwear from localStorage:", headwear);    
-const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
-console.log("Headwear from localStorage:", headwear);      
+ // Get the value of a specific attribute
+ const ethUserAddress = ethUserDataLocalStorage.ethAddress
+ console.log('Eth user address from localStorage:', ethUserAddress);
 
-console.log("PreLoad Eyewear from localStorage:", eyewear);            
-const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
-console.log("Eyewear from localStorage:", eyewear);
+// const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
+// console.log("Headwear from localStorage:", headwear);      
+
+// const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
+// console.log("Eyewear from localStorage:", eyewear);
 
 
 isPlaying.registerListener(async function(val) {
