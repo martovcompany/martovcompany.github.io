@@ -209,8 +209,8 @@ apeFileRun()
 
 console.log('cookies:', document.cookie)
 
-// window.localStorage.getItem('name')
-// console.log('name from martoverse localStorage', window.localStorage.getItem('name'))
+window.localStorage.getItem('name')
+console.log('value from martoverse localStorage', window.localStorage.getItem('name'))
 
    // Retrieve all eth user data (as a string) from localStorage
   //  const currentEthData = window.localStorage.getItem('ethData')   
