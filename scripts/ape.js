@@ -207,9 +207,12 @@ function printName() {
 }
 printName()
 
+const name = localStorage.getItem('name')
+console.log('name localStorage', name)
+
    // Retrieve all eth user data (as a string) from localStorage
-   const currentEthData = window.localStorage.getItem('ethData')   
-   console.log('Headware:', currentEthData.Headwear);
+  //  const currentEthData = window.localStorage.getItem('ethData')   
+  //  console.log('Headware:', currentEthData.Headwear);
 
 // const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
 // console.log("PreLoad All eth user:", ethUserDataLocalStorage);
