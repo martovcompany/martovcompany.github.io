@@ -207,27 +207,37 @@ function apeFileRun() {
 }
 apeFileRun()
 
-console.log('cookies:', document.cookie)
+const allCookies = document.cookie;
+
+// Get eth data from cookies 
+if (allCookies) {
+  const parseCookies = (str) =>
+    str
+      // separate key-value pairs from each other
+      .split(';')
+      // separate keys from values in each pair
+      .map((v) => v.split('='))
+      // create an object with all key-value pairs
+      .reduce((acc, v) => {
+        acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+          v[1].trim()
+        );
+        return acc;
+      }, {});
+  const res = parseCookies(allCookies);
+  console.log('martoverse parseCookies res:', res);
+  console.log('martoverse ethUserAddress:', res.userEthAddress);
+  console.log('martoverse Headwear:', res.Headwear);
+  console.log('martoverse Eyewear:', res.Eyewear);
+  console.log('martoverse tovBalance', res.tovBalance);
+} else {
+  console.log('No cookies');
+}
+
 
 window.localStorage.getItem('name')
 console.log('value from martoverse localStorage', window.localStorage.getItem('name'))
 
-   // Retrieve all eth user data (as a string) from localStorage
-  //  const currentEthData = window.localStorage.getItem('ethData')   
-  //  console.log('Headware:', currentEthData.Headwear);
-
-// const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-// console.log("PreLoad All eth user:", ethUserDataLocalStorage);
-
- // Get the value of a specific attribute
-//  const ethUserAddress = ethUserDataLocalStorage.ethAddress
-//  console.log('Eth user address from localStorage:', ethUserAddress);
-
-// const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
-// console.log("Headwear from localStorage:", headwear);      
-
-// const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
-// console.log("Eyewear from localStorage:", eyewear);
 
 
 isPlaying.registerListener(async function(val) {
