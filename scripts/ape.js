@@ -174,7 +174,7 @@ async function myHandleResponseFunction(data) {
             
             // Get all cookies
             const allCookies = document.cookie;
-            console.log('allCookies:', allCookies)
+            console.log('allCookies from OnGameStateLoaded:', allCookies)
 
             // Parse cookies as js Object
             if (allCookies) {
@@ -192,11 +192,11 @@ async function myHandleResponseFunction(data) {
                     return acc;
                   }, {});
               const res = parseCookies(allCookies);
-              console.log('parseCookies res:', res);
-              console.log('cookieEthUserAddress res:', res.userEthAddress);
-              console.log('cookieHeadwear res:', res.Headwear);
-              console.log('cookieEyewear res:', res.Eyewear);
-              console.log('cookietovBalance res', res.tovBalance);
+              console.log('parseCookies res from OnGameStateLoaded:', res);
+              console.log('cookieEthUserAddress res from OnGameStateLoaded:', res.userEthAddress);
+              console.log('cookieHeadwear res from OnGameStateLoaded:', res.Headwear);
+              console.log('cookieEyewear res from OnGameStateLoaded:', res.Eyewear);
+              console.log('cookietovBalance res from OnGameStateLoaded', res.tovBalance);
             } else {
               console.log('No cookies');
             }
@@ -222,7 +222,7 @@ apeFileRun()
 
 // Get all cookies
 const allCookies = document.cookie;
-console.log('allCookies:', allCookies)
+console.log('allCookies from ape.js:', allCookies)
 
  // Parse cookies as js Object
 if (allCookies) {
@@ -240,13 +240,13 @@ if (allCookies) {
         return acc;
       }, {});
   const res = parseCookies(allCookies);
-  console.log('parseCookies res:', res);
-  console.log('cookieEthUserAddress res:', res.userEthAddress);
-  console.log('cookieHeadwear res:', res.Headwear);
-  console.log('cookieEyewear res:', res.Eyewear);
-  console.log('cookietovBalance res', res.tovBalance);
+  console.log('parseCookies res from ape.js:', res);
+  console.log('cookieEthUserAddress res from ape.js:', res.userEthAddress);
+  console.log('cookieHeadwear res from ape.js:', res.Headwear);
+  console.log('cookieEyewear res from ape.js:', res.Eyewear);
+  console.log('cookietovBalance res from ape.js', res.tovBalance);
 } else {
-  console.log('No cookies');
+  console.log('No cookies from ape.js');
 }
 
 
