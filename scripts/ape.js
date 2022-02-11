@@ -208,6 +208,7 @@ function apeFileRun() {
 apeFileRun()
 
 const allCookies = document.cookie;
+console.log('allCookies:', allCookies)
 
 // Get eth data from cookies 
 if (allCookies) {
@@ -225,15 +226,14 @@ if (allCookies) {
         return acc;
       }, {});
   const res = parseCookies(allCookies);
-  console.log('martoverse parseCookies res:', res);
-  console.log('martoverse ethUserAddress:', res.userEthAddress);
-  console.log('martoverse Headwear:', res.Headwear);
-  console.log('martoverse Eyewear:', res.Eyewear);
-  console.log('martoverse tovBalance', res.tovBalance);
+  console.log('parseCookies res:', res);
+  console.log('ethUserAddress:', res.userEthAddress);
+  console.log('Headwear:', res.Headwear);
+  console.log('Eyewear:', res.Eyewear);
+  console.log('tovBalance', res.tovBalance);
 } else {
   console.log('No cookies');
 }
-
 
 window.localStorage.getItem('name')
 console.log('value from martoverse localStorage', window.localStorage.getItem('name'))
