@@ -207,6 +207,7 @@ function apeFileRun() {
 }
 apeFileRun()
 
+console.log('cookies:', document.cookie)
 const allCookies = document.cookie;
 console.log('allCookies:', allCookies)
 
