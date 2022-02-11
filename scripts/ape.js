@@ -157,12 +157,8 @@ async function getTov() {
 
 
 async function myHandleResponseFunction(data) {
-
-    console.log('myHandleResponseFunction run')
+    console.log('myHandleResponseFunction is running')
     console.warn("UE4 Response received!", data);
-
-    const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-    console.log("All eth user data befor OnGameStateLoaded:", ethUserDataLocalStorage);
 
     switch (data) {
         // case "OnMetaForgedLoaded":
@@ -175,21 +171,38 @@ async function myHandleResponseFunction(data) {
             console.log("Game state LOADED from UE4")
             const acc = await getAccount()
             const tov = await getTov()
-
-            // console.log("PreLoad All eth user data:", ethUserDataLocalStorage);
-            // const ethUserDataLocalStorage = JSON.parse(window.localStorage.getItem('ethData'));
-            // console.log("All eth user data:", ethUserDataLocalStorage);
             
-            // console.log("PreLoad Headwear from localStorage:", headwear);    
-            // const headwear = ethUserDataLocalStorage.anuranNFT.Headwear
-            // console.log("Headwear from localStorage:", headwear);      
-            
-            // console.log("PreLoad Eyewear from localStorage:", eyewear);            
-            // const eyewear = ethUserDataLocalStorage.anuranNFT.Eyewear
-            // console.log("Eyewear from localStorage:", eyewear);
+            // Get all cookies
+            const allCookies = document.cookie;
+            console.log('allCookies:', allCookies)
 
-            console.log("account", acc, "tov", tov, "headwear", headwear, "eyewear", eyewear)
-            emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": headwear, "Eyewear": eyewear})
+            // Parse cookies as js Object
+            if (allCookies) {
+              const parseCookies = (str) =>
+                str
+                  // separate key-value pairs from each other
+                  .split(';')
+                  // separate keys from values in each pair
+                  .map((v) => v.split('='))
+                  // create an object with all key-value pairs
+                  .reduce((acc, v) => {
+                    acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+                      v[1].trim()
+                    );
+                    return acc;
+                  }, {});
+              const res = parseCookies(allCookies);
+              console.log('parseCookies res:', res);
+              console.log('cookieEthUserAddress res:', res.userEthAddress);
+              console.log('cookieHeadwear res:', res.Headwear);
+              console.log('cookieEyewear res:', res.Eyewear);
+              console.log('cookietovBalance res', res.tovBalance);
+            } else {
+              console.log('No cookies');
+            }
+
+            console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
+            emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
 //         case "RewardShoe":
 //             console.log("RewardShoe response received")
 // //             buyShoe();
@@ -207,11 +220,11 @@ function apeFileRun() {
 }
 apeFileRun()
 
-console.log('cookies:', document.cookie)
+// Get all cookies
 const allCookies = document.cookie;
 console.log('allCookies:', allCookies)
 
-// Get eth data from cookies 
+ // Parse cookies as js Object
 if (allCookies) {
   const parseCookies = (str) =>
     str
@@ -228,17 +241,13 @@ if (allCookies) {
       }, {});
   const res = parseCookies(allCookies);
   console.log('parseCookies res:', res);
-  console.log('ethUserAddress:', res.userEthAddress);
-  console.log('Headwear:', res.Headwear);
-  console.log('Eyewear:', res.Eyewear);
-  console.log('tovBalance', res.tovBalance);
+  console.log('cookieEthUserAddress res:', res.userEthAddress);
+  console.log('cookieHeadwear res:', res.Headwear);
+  console.log('cookieEyewear res:', res.Eyewear);
+  console.log('cookietovBalance res', res.tovBalance);
 } else {
   console.log('No cookies');
 }
-
-window.localStorage.getItem('name')
-console.log('value from martoverse localStorage', window.localStorage.getItem('name'))
-
 
 
 isPlaying.registerListener(async function(val) {
