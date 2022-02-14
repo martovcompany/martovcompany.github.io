@@ -9,6 +9,11 @@ const tovAddress = "0x89487436E74f06e118414fa5465E3b24e1b1e84F" // on Rinkeby te
 
 // let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
 
+let descriptor = {
+    ConsoleCommand: 'stat fps'
+}
+emitCommand(descriptor);
+
 
 async function getApeBalance(ape) {
     if (typeof window.ethereum !== 'undefined') {
