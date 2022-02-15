@@ -259,3 +259,5 @@ if (allCookies) {
 isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);    
 });
+console.log('isPlaying:', isPlaying)
+console.log('isPlaying.registerListener:', isPlaying.registerListener)
