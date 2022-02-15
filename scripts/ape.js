@@ -169,9 +169,9 @@ async function myHandleResponseFunction(data) {
     switch (data) {
         case "OnMetaForgedLoaded":
             console.log("Meta Forged player LOADED from UE4")
-            await getRes()
-            console.log(realURI)
-            emitUIInteraction(realURI)
+//             await getRes()
+//             console.log(realURI)
+//             emitUIInteraction(realURI)
             break;
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
@@ -266,9 +266,9 @@ isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);
     const acc = await getAccount()
     const tov = await getTov()
-    console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
-    emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
     getCookie()
+    console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
+    emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})    
     console.log('isPlaying.a in registerListener:', isPlaying.a)
 });
 
