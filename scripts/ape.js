@@ -204,10 +204,7 @@ async function myHandleResponseFunction(data) {
               console.log('cookietovBalance res from OnGameStateLoaded', res.tovBalance);
             } else {
               console.log('No cookies');
-            }
-
-            console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
-            emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
+            }            
             break;
 //         case "RewardShoe":
 //             console.log("RewardShoe response received")
@@ -259,7 +256,10 @@ if (allCookies) {
 isPlaying.registerListener(async function(val) {
     console.log('registerListener is called')
     addResponseEventListener("handle_responses", myHandleResponseFunction);
-    console.log(realURI)
+    console.log("account1", acc, "tov1", tov, "headwear1", res.Headwear, "eyewear1", res.Eyewear)
+    emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
+    console.log("account2", acc, "tov2", tov, "headwear2", res.Headwear, "eyewear2", res.Eyewear)
+    console.log('print old realURI for debugging:', realURI)
 });
 console.log('isPlaying:', isPlaying)
 console.log('isPlaying.a:', isPlaying.a)
