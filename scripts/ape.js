@@ -172,7 +172,10 @@ async function myHandleResponseFunction(data) {
 //             await getRes()
 //             console.log(realURI)
 //             emitUIInteraction(realURI)
-
+            break;
+        case "OnGameStateLoaded":
+            console.log("Game state LOADED from UE4")
+            
             // Get all cookies
             const allCookies = document.cookie;
             console.log('allCookies from myHandleResponseFunction:', allCookies)
@@ -198,10 +201,7 @@ async function myHandleResponseFunction(data) {
               emitUIInteraction({"ethUserAddress" : res.userEthAddress, "tovBalance" : res.tovBalance, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
             } else {
               console.log('No cookies from ape.js');
-            }      
-            break;
-        case "OnGameStateLoaded":
-            console.log("Game state LOADED from UE4")       
+            }
             break;
 //         case "RewardShoe":
 //             console.log("RewardShoe response received")
