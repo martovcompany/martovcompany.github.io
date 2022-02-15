@@ -287,10 +287,10 @@ isPlaying.registerListener(async function(val) {
           }, {});
       const res = parseCookies(allCookies);
       console.log('parseCookies res from ape.js:', res);
-      console.log('cookieEthUserAddress res from ape.js:', res.userEthAddress);
-      console.log('cookieHeadwear res from ape.js:', res.Headwear);
-      console.log('cookieEyewear res from ape.js:', res.Eyewear);
-      console.log('cookietovBalance res from ape.js', res.tovBalance);
+//       console.log('cookieEthUserAddress res from ape.js:', res.userEthAddress);
+//       console.log('cookieHeadwear res from ape.js:', res.Headwear);
+//       console.log('cookieEyewear res from ape.js:', res.Eyewear);
+//       console.log('cookietovBalance res from ape.js', res.tovBalance);
       console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
       emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
     } else {
