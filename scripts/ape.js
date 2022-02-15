@@ -136,6 +136,7 @@ async function buyShoe() {
 async function getAccount() {
   if (typeof window.ethereum !== 'undefined') {
       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      console.log("Current account:", account)
       return account    
   } else {
       return ""
@@ -262,9 +263,9 @@ isPlaying.registerListener(async function(val) {
     console.log('print old realURI for debugging:', realURI)
     const acc = await getAccount()
     const tov = await getTov()
-    console.log("account1", acc, "tov1", tov)
+    console.log("account1:", acc, "tov1:", tov)
     emitUIInteraction({"account" : acc, "Tov" : tov})
-    console.log("account2", acc, "tov2", tov)    
+    console.log("account2:", acc, "tov2:", tov)    
 });
 console.log('isPlaying:', isPlaying)
 console.log('isPlaying.a:', isPlaying.a)
