@@ -255,6 +255,6 @@ if (allCookies) {
 }
 
 
-// isPlaying.registerListener(async function(val) {
+isPlaying.registerListener(async function(val) {
     addResponseEventListener("handle_responses", myHandleResponseFunction);    
-// });
+});
