@@ -203,8 +203,6 @@ async function myHandleResponseFunction(data) {
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
             
-            // Get all cookies
-            const allCookies = document.cookie;
             console.log('allCookies from OnGameStateLoaded:', allCookies)
         
             // Parse cookies as js Object
