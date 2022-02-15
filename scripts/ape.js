@@ -7,7 +7,7 @@ const frogNftAddress = "0x8f5d5DBE2df94A92626D729EEFD8351B14c29efA" // on Rinkeb
 const shoeNftAddress = "0x12DF4a75A25d2cE543aFCbe54fB275F9390bb2c9" // on Polygon mumbai test
 const tovAddress = "0x89487436E74f06e118414fa5465E3b24e1b1e84F" // on Rinkeby testnet
 
-// let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
+let realURI = {"ipfs": "No ape", "attrs" : "", "account" : "", "Eyes" : "", "Head" : "", "Tov" : 0}
 
 let descriptor = {
     ConsoleCommand: 'stat fps'
@@ -166,12 +166,12 @@ async function myHandleResponseFunction(data) {
     console.warn("UE4 Response received!", data);
 
     switch (data) {
-        // case "OnMetaForgedLoaded":
-        //     console.log("Meta Forged player LOADED from UE4")
-        //     await getRes()
-        //     console.log(realURI)
-        //     emitUIInteraction(realURI)
-        //     break;
+        case "OnMetaForgedLoaded":
+            console.log("Meta Forged player LOADED from UE4")
+            await getRes()
+            console.log(realURI)
+            emitUIInteraction(realURI)
+            break;
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
             const acc = await getAccount()
