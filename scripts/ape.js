@@ -208,6 +208,7 @@ async function myHandleResponseFunction(data) {
 
             console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
             emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
+            break;
 //         case "RewardShoe":
 //             console.log("RewardShoe response received")
 // //             buyShoe();
