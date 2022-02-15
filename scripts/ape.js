@@ -178,34 +178,34 @@ async function myHandleResponseFunction(data) {
 //             const acc = await getAccount()
 //             const tov = await getTov()
             
-            // Get all cookies
-            const allCookies = document.cookie;
-            console.log('allCookies from OnGameStateLoaded:', allCookies)
+//             // Get all cookies
+//             const allCookies = document.cookie;
+//             console.log('allCookies from OnGameStateLoaded:', allCookies)
 
-            // Parse cookies as js Object
-            if (allCookies) {
-              const parseCookies = (str) =>
-                str
-                  // separate key-value pairs from each other
-                  .split(';')
-                  // separate keys from values in each pair
-                  .map((v) => v.split('='))
-                  // create an object with all key-value pairs
-                  .reduce((acc, v) => {
-                    acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
-                      v[1].trim()
-                    );
-                    return acc;
-                  }, {});
-              const res = parseCookies(allCookies);
-              console.log('parseCookies res from OnGameStateLoaded:', res);
-              console.log('cookieEthUserAddress res from OnGameStateLoaded:', res.userEthAddress);
-              console.log('cookieHeadwear res from OnGameStateLoaded:', res.Headwear);
-              console.log('cookieEyewear res from OnGameStateLoaded:', res.Eyewear);
-              console.log('cookietovBalance res from OnGameStateLoaded', res.tovBalance);
-            } else {
-              console.log('No cookies');
-            }
+//             // Parse cookies as js Object
+//             if (allCookies) {
+//               const parseCookies = (str) =>
+//                 str
+//                   // separate key-value pairs from each other
+//                   .split(';')
+//                   // separate keys from values in each pair
+//                   .map((v) => v.split('='))
+//                   // create an object with all key-value pairs
+//                   .reduce((acc, v) => {
+//                     acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+//                       v[1].trim()
+//                     );
+//                     return acc;
+//                   }, {});
+//               const res = parseCookies(allCookies);
+//               console.log('parseCookies res from OnGameStateLoaded:', res);
+//               console.log('cookieEthUserAddress res from OnGameStateLoaded:', res.userEthAddress);
+//               console.log('cookieHeadwear res from OnGameStateLoaded:', res.Headwear);
+//               console.log('cookieEyewear res from OnGameStateLoaded:', res.Eyewear);
+//               console.log('cookietovBalance res from OnGameStateLoaded', res.tovBalance);
+//             } else {
+//               console.log('No cookies');
+//             }
             
 //             console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
 //             emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
@@ -232,42 +232,44 @@ function getCookie() {
     const allCookies = document.cookie;
     console.log('allCookies from ape.js:', allCookies)
 
-//      // Parse cookies as js Object
-//     if (allCookies) {
-//       const parseCookies = (str) =>
-//         str
-//           // separate key-value pairs from each other
-//           .split(';')
-//           // separate keys from values in each pair
-//           .map((v) => v.split('='))
-//           // create an object with all key-value pairs
-//           .reduce((acc, v) => {
-//             acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
-//               v[1].trim()
-//             );
-//             return acc;
-//           }, {});
-//       const res = parseCookies(allCookies);
-//       console.log('parseCookies res from ape.js:', res);
-//       console.log('cookieEthUserAddress res from ape.js:', res.userEthAddress);
-//       console.log('cookieHeadwear res from ape.js:', res.Headwear);
-//       console.log('cookieEyewear res from ape.js:', res.Eyewear);
-//       console.log('cookietovBalance res from ape.js', res.tovBalance);
-//     } else {
-//       console.log('No cookies from ape.js');
-//     }
+     // Parse cookies as js Object
+    if (allCookies) {
+      const parseCookies = (str) =>
+        str
+          // separate key-value pairs from each other
+          .split(';')
+          // separate keys from values in each pair
+          .map((v) => v.split('='))
+          // create an object with all key-value pairs
+          .reduce((acc, v) => {
+            acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+              v[1].trim()
+            );
+            return acc;
+          }, {});
+      const res = parseCookies(allCookies);
+      console.log('parseCookies res from ape.js:', res);
+      console.log('cookieEthUserAddress res from ape.js:', res.userEthAddress);
+      console.log('cookieHeadwear res from ape.js:', res.Headwear);
+      console.log('cookieEyewear res from ape.js:', res.Eyewear);
+      console.log('cookietovBalance res from ape.js', res.tovBalance);
+    } else {
+      console.log('No cookies from ape.js');
+    }
 }
 
+
+console.log('isPlaying.a outside of the registerListener:', isPlaying.a)
 
 isPlaying.registerListener(async function(val) {
     console.log('registerListener is called')
     addResponseEventListener("handle_responses", myHandleResponseFunction);
     const acc = await getAccount()
     const tov = await getTov()
-    emitUIInteraction({"account" : acc, "Tov" : tov})
-    console.log("account:", acc, "tov:", tov)
+    console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
+    emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
     getCookie()
     console.log('isPlaying.a in registerListener:', isPlaying.a)
 });
-console.log('isPlaying:', isPlaying)
-console.log('isPlaying.a after registerListener:', isPlaying.a)
+
+console.log('isPlaying Obj:', isPlaying)
