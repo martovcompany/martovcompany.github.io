@@ -172,13 +172,10 @@ async function myHandleResponseFunction(data) {
 //             await getRes()
 //             console.log(realURI)
 //             emitUIInteraction(realURI)
-            break;
-        case "OnGameStateLoaded":
-            console.log("Game state LOADED from UE4")
             
             // Get all cookies
             const allCookies = document.cookie;
-            console.log('allCookies from myHandleResponseFunction:', allCookies)
+            console.log('allCookies from OnMetaForgedLoaded:', allCookies)
         
             // Parse cookies as js Object
             if (allCookies) {
@@ -196,7 +193,37 @@ async function myHandleResponseFunction(data) {
                     return acc;
                   }, {});
               const res = parseCookies(allCookies);
-              console.log('parseCookies res from myHandleResponseFunction:', res);
+              console.log('parseCookies res from OnMetaForgedLoaded:', res);
+              console.log("ethUserAddress", res.userEthAddress, "tovBalance", res.tovBalance, "headwear", res.Headwear, "eyewear", res.Eyewear)
+              emitUIInteraction({"ethUserAddress" : res.userEthAddress, "tovBalance" : res.tovBalance, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
+            } else {
+              console.log('No cookies from ape.js');
+            }
+            break;
+        case "OnGameStateLoaded":
+            console.log("Game state LOADED from UE4")
+            
+            // Get all cookies
+            const allCookies = document.cookie;
+            console.log('allCookies from OnGameStateLoaded:', allCookies)
+        
+            // Parse cookies as js Object
+            if (allCookies) {
+              const parseCookies = (str) =>
+                str
+                  // separate key-value pairs from each other
+                  .split(';')
+                  // separate keys from values in each pair
+                  .map((v) => v.split('='))
+                  // create an object with all key-value pairs
+                  .reduce((acc, v) => {
+                    acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+                      v[1].trim()
+                    );
+                    return acc;
+                  }, {});
+              const res = parseCookies(allCookies);
+              console.log('parseCookies res from OnGameStateLoaded:', res);
               console.log("ethUserAddress", res.userEthAddress, "tovBalance", res.tovBalance, "headwear", res.Headwear, "eyewear", res.Eyewear)
               emitUIInteraction({"ethUserAddress" : res.userEthAddress, "tovBalance" : res.tovBalance, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
             } else {
