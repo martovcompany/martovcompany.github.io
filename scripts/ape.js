@@ -259,12 +259,12 @@ if (allCookies) {
 isPlaying.registerListener(async function(val) {
     console.log('registerListener is called')
     addResponseEventListener("handle_responses", myHandleResponseFunction);
+    console.log('print old realURI for debugging:', realURI)
     const acc = await getAccount()
     const tov = await getTov()
-    console.log("account1", acc, "tov1", tov, "headwear1", res.Headwear, "eyewear1", res.Eyewear)
-    emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
-    console.log("account2", acc, "tov2", tov, "headwear2", res.Headwear, "eyewear2", res.Eyewear)
-    console.log('print old realURI for debugging:', realURI)
+    console.log("account1", acc, "tov1", tov)
+    emitUIInteraction({"account" : acc, "Tov" : tov})
+    console.log("account2", acc, "tov2", tov)    
 });
 console.log('isPlaying:', isPlaying)
 console.log('isPlaying.a:', isPlaying.a)
