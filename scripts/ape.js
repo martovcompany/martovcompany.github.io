@@ -165,6 +165,12 @@ async function getTov() {
 async function myHandleResponseFunction(data) {
     console.log('myHandleResponseFunction is running')
     console.warn("UE4 Response received!", data);
+    
+    try {
+        console.log('Try to get UE4 data response', data);
+      } catch (error) {
+        console.log(error)
+    }
 
     switch (data) {
         case "OnMetaForgedLoaded":
@@ -264,8 +270,8 @@ console.log('isPlaying.a outside of the registerListener:', isPlaying.a)
 isPlaying.registerListener(async function(val) {
     console.log('registerListener is called')
     addResponseEventListener("handle_responses", myHandleResponseFunction);
-    const acc = await getAccount()
-    const tov = await getTov()
+//     const acc = await getAccount()
+//     const tov = await getTov()
         // Get all cookies
     const allCookies = document.cookie;
     console.log('allCookies from ape.js:', allCookies)
@@ -291,8 +297,8 @@ isPlaying.registerListener(async function(val) {
 //       console.log('cookieHeadwear res from ape.js:', res.Headwear);
 //       console.log('cookieEyewear res from ape.js:', res.Eyewear);
 //       console.log('cookietovBalance res from ape.js', res.tovBalance);
-      console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
-      emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
+      console.log("ethUserAddress", res.userEthAddress, "tovBalance", res.tovBalance, "headwear", res.Headwear, "eyewear", res.Eyewear)
+      emitUIInteraction({"ethUserAddress" : res.userEthAddress, "tovBalance" : res.tovBalance, "Headwear": res.Headwear, "Eyewear": res.Eyewear})  
     } else {
       console.log('No cookies from ape.js');
     }      
