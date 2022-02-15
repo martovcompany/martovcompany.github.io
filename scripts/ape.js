@@ -174,8 +174,8 @@ async function myHandleResponseFunction(data) {
             break;
         case "OnGameStateLoaded":
             console.log("Game state LOADED from UE4")
-            const acc = await getAccount()
-            const tov = await getTov()
+//             const acc = await getAccount()
+//             const tov = await getTov()
             
             // Get all cookies
             const allCookies = document.cookie;
@@ -204,7 +204,10 @@ async function myHandleResponseFunction(data) {
               console.log('cookietovBalance res from OnGameStateLoaded', res.tovBalance);
             } else {
               console.log('No cookies');
-            }            
+            }
+            
+//             console.log("account", acc, "tov", tov, "headwear", res.Headwear, "eyewear", res.Eyewear)
+//             emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
             break;
 //         case "RewardShoe":
 //             console.log("RewardShoe response received")
@@ -256,6 +259,8 @@ if (allCookies) {
 isPlaying.registerListener(async function(val) {
     console.log('registerListener is called')
     addResponseEventListener("handle_responses", myHandleResponseFunction);
+    const acc = await getAccount()
+    const tov = await getTov()
     console.log("account1", acc, "tov1", tov, "headwear1", res.Headwear, "eyewear1", res.Eyewear)
     emitUIInteraction({"account" : acc, "Tov" : tov, "Headwear": res.Headwear, "Eyewear": res.Eyewear})
     console.log("account2", acc, "tov2", tov, "headwear2", res.Headwear, "eyewear2", res.Eyewear)
