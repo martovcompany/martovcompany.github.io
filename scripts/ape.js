@@ -160,8 +160,6 @@ async function getTov() {
     }
 }
 
-
-
 async function myHandleResponseFunction(data) {
     console.log('myHandleResponseFunction is running')
     console.warn("UE4 Response received!", data);
